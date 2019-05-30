@@ -2,15 +2,18 @@
   <h1 style="margin: 15px;">Trips</h1>
   
   <ion-list>
-    <ion-item>
-      <img src="https://i.boring.host/166LQ8hw.jpg" style="width: 25%; height: 75%; margin: 15px" (click)="goRental1()">
-      <ion-label>Mansion</ion-label>
-    </ion-item>  
-    <ion-item>
-      <img src="https://i.boring.host/166MzJHl.jpg" style="width: 25%; height: 75%; margin: 15px" (click)="goRental2()">
-      <ion-label>Beach House</ion-label>
-    </ion-item>
+    <ion-card *ngFor="let rental of rentals">
+      <img src = {{rental.image}}>
+      <ion-card>
+        <ion-card-subtitle>House address: {{rental.house_address}}</ion-card-subtitle>
+        <ion-card-subtitle>Price: {{rental.price}}</ion-card-subtitle>
+        <ion-card-subtitle>Owner: {{rental.owner}}</ion-card-subtitle>
+      </ion-card>
+    </ion-card>
   </ion-list>
 
   <ion-button class="button" color="secondary" size="large" (click)="goToExplore()">Explore Budget Airbnb</ion-button>
 </ion-content>
+
+<!-- my images had buttons but I removed them as I they linked to 2 different pages and I couldn't 
+figure out a way to do that with the for loop. -->
