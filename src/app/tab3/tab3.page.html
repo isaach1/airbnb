@@ -1,10 +1,13 @@
-<ion-content>
+<ion-header>
   <h1 style="margin: 15px;">Trips</h1>
-  
+</ion-header>
+
+<ion-content>
   <ion-list>
     <ion-card *ngFor="let rental of rentals">
-      <img src = {{rental.image}}>
+      <img src = {{rental.image}} (click) = "goRental(rental)">
       <ion-card>
+        <ion-card-subtitle>Name: {{rental.name}}</ion-card-subtitle>
         <ion-card-subtitle>House address: {{rental.house_address}}</ion-card-subtitle>
         <ion-card-subtitle>Price: {{rental.price}}</ion-card-subtitle>
         <ion-card-subtitle>Owner: {{rental.owner}}</ion-card-subtitle>

@@ -1,14 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-        <ion-back-button defaultHref="home"></ion-back-button>
+        <ion-back-button defaultHref="tabs"></ion-back-button>
     </ion-buttons>
-    <ion-title>Mansion Details</ion-title>
+    <ion-title *ngIf = "currentRental">{{currentRental.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <h1 style="text-align: center"><b>This house is very nice</b></h1>
-  <img src="https://i.boring.host/166P29rQ.jpg" style="width: 100%">
+  <img src="{{currentRental.image}}" style="width: 100%">
+  <ion-card>
+    <ion-item>{{currentRental.name}}</ion-item>
+    <ion-item>{{currentRental.house_address}}</ion-item>
+  </ion-card>
+
 
 </ion-content>
