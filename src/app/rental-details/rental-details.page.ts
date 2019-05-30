@@ -60,7 +60,7 @@ export class RentalDetailsPage implements OnInit {
   }
 
   navigateBack () {
-    this.navCtrl.navigateForward('');
+    this.navCtrl.navigateForward('tabs');
   }
 
 }

@@ -3,20 +3,32 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-card *ngFor="let rental of rentals">
-      <img src = {{rental.image}} (click) = "goRental(rental)">
-      <ion-card>
-        <ion-card-subtitle>Name: {{rental.name}}</ion-card-subtitle>
-        <ion-card-subtitle>House address: {{rental.house_address}}</ion-card-subtitle>
-        <ion-card-subtitle>Price: {{rental.price}}</ion-card-subtitle>
-        <ion-card-subtitle>Owner: {{rental.owner}}</ion-card-subtitle>
-      </ion-card>
-    </ion-card>
-  </ion-list>
+    <div *ngFor="let rental of rentals; let i = index">
+      <div *ngIf="i % 3 == 0" class="row">
+        <span>
+            <img class="box" src = {{rental.image}} (click) = "goRental(rental)">           
+            <ion-card>
+                <p>Name: {{rental.name}}</p>
+                <p>House address: {{rental.house_address}}</p> 
+            </ion-card>  
+        </span>  
+        <span *ngIf="i + 1 < rentals.length">
+            <img class="box" src = "{{rentals[i + 1].image}}" (click) = "goRental(rentals[i + 1])">           
+            <ion-card>
+                <p>Name: {{rentals[i + 1].name}}</p>
+                <p>House address: {{rentals[i + 1].house_address}}</p>
+            </ion-card>   
+        </span>
+        <span *ngIf="i + 2 < rentals.length">
+            <img class="box" src = "{{rentals[i + 2].image}}" (click) = "goRental(rentals[i + 2])">           
+            <ion-card>
+              <p>Name: {{rentals[i + 2].name}}</p>
+              <p>House address: {{rentals[i + 2].house_address}}</p>
+            </ion-card>
+        </span>   
+      </div>
+    </div>    
+    
 
   <ion-button class="button" color="secondary" size="large" (click)="goToExplore()">Explore Budget Airbnb</ion-button>
 </ion-content>
-
-<!-- my images had buttons but I removed them as I they linked to 2 different pages and I couldn't 
-figure out a way to do that with the for loop. -->

@@ -1,20 +1,19 @@
-
 <ion-content>
   <ion-grid>
     <ion-row justify-content-center>
       <ion-col align-self-center>
-        <div text-center>
-          <h3><b>Login</b></h3>
-        </div>
-        <div>
+        <ion-card text-center>
+          <ion-card-title class="title"><b>Welcome Back! Please Login Here</b></ion-card-title>
+        </ion-card>
+        <ion-card>
           <ion-item>
             <ion-input type="text" placeholder="Username"></ion-input>
           </ion-item>
           <ion-item>
             <ion-input type="password" placeholder="Password"></ion-input>
           </ion-item>
-        </div>
-        <div>
+        </ion-card>
+        <div style="margin: auto">
           <ion-button size="large" (click)="goToHome()">Login</ion-button>
           <ion-button size="large" (click)="goToRegister()">Register</ion-button>
         </div>
@@ -24,4 +23,3 @@
 </ion-content>
 
 
-<!-- [(ngModel)]="user_input" -->

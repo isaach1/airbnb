@@ -25,16 +25,18 @@
     </ion-item>
 
     <ion-item>
-      <ion-card-header>
-        <ion-card-title>Reviews List</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
         <ion-list>
-          <ion-item>
-            No reviews listed.
-          </ion-item>
-        </ion-list>
-      </ion-card-content>
+            <ion-card-header>
+              <ion-card-title>Reviews List</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-item>
+                  <p>No reviews listed.</p>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-list>
     </ion-item>
   </ion-card>
   </ion-list>
@@ -45,8 +47,14 @@
     </ion-card-header>
     <ion-list>
       <ion-item *ngFor="let payment of payments">
-        <p>Name on Card: {{payment.name_on_card}}</p>
-        <p>Card Number: {{payment.card_number}}</p>
+        <ion-list>
+          <ion-item>
+            Name on Card: {{payment.name_on_card}}<br>
+          </ion-item>
+          <ion-item>
+            Card Number: {{payment.card_number}}
+          </ion-item>
+        </ion-list>
       </ion-item>
     </ion-list>
   </ion-card>

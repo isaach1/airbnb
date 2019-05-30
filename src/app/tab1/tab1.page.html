@@ -5,5 +5,31 @@
   <ion-button color="primary">Number of Guests</ion-button>  
   <ion-button color="primary">Dates</ion-button>
   <ion-button color="primary">Price Range</ion-button>
+
+  <div *ngFor="let rental of rentals; let i = index">
+      <div *ngIf="i % 3 == 0" class="row">
+        <span>
+            <img class="box" src = {{rental.image}} (click) = "goRental(rental)">           
+            <ion-card>
+                <p>Name: {{rental.name}}</p>
+                <p>House address: {{rental.house_address}}</p> 
+            </ion-card>  
+        </span>  
+        <span *ngIf="i + 1 < rentals.length">
+            <img class="box" src = "{{rentals[i + 1].image}}" (click) = "goRental(rentals[i + 1])">           
+            <ion-card>
+                <p>Name: {{rentals[i + 1].name}}</p>
+                <p>House address: {{rentals[i + 1].house_address}}</p>
+            </ion-card>   
+        </span>
+        <span *ngIf="i + 2 < rentals.length">
+            <img class="box" src = "{{rentals[i + 2].image}}" (click) = "goRental(rentals[i + 2])">           
+            <ion-card>
+              <p>Name: {{rentals[i + 2].name}}</p>
+              <p>House address: {{rentals[i + 2].house_address}}</p>
+            </ion-card>
+        </span>   
+      </div>
+    </div> 
   
 </ion-content>

@@ -9,10 +9,12 @@
 
 <ion-content>
   <h1 style="text-align: center"><b>This house is very nice</b></h1>
-  <img src="{{currentRental.image}}" style="width: 100%">
+  <img src="{{currentRental.image}}" class="image">
   <ion-card>
-    <ion-item>{{currentRental.name}}</ion-item>
-    <ion-item>{{currentRental.house_address}}</ion-item>
+    <ion-item>Name: {{currentRental.name}}</ion-item>
+    <ion-item>Address: {{currentRental.house_address}}</ion-item>
+    <ion-item>Price: {{currentRental.price}}</ion-item>
+    <ion-item>Owner: {{currentRental.owner}}</ion-item>
   </ion-card>
 
 

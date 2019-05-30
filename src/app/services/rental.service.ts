@@ -25,11 +25,20 @@ export class RentalService {
     let rental2 = new Rental();
     rental2.id = 2;
     rental2.name = "Beach House";
-    rental2.image = "https://i.boring.host/166MzJHl.jpg";
+    rental2.image = "https://i.boring.host/16GL1VGV.jpg";
     rental2.house_address = "56 Goldsmith Street, Boston, MA, 02133";
     rental2.price = 200;
     rental2.owner = "Anthony Fuggle";
     this.rentals.push(rental2);
+
+    let rental3 = new Rental();
+    rental3.id = 3;
+    rental3.name = "Luxury Villa";
+    rental3.image = "https://i.boring.host/16GI06ql.jpg";
+    rental3.house_address = "865 Nowhere, Bahamas";
+    rental3.price = 550;
+    rental3.owner = "Jeremy Clarkson";
+    this.rentals.push(rental3);
   }
 
   findRentalById(id: number): Rental {
