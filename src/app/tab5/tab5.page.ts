@@ -39,6 +39,7 @@ export class Tab5Page implements OnInit {
     user1.phone_number = "+447795241717";
     user1.bookings = 0;
     user1.reviews = 0;
+    this.users.push(user1);
   }
 
   ngOnInit() {
