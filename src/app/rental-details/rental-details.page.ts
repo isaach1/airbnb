@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Rental } from '../models';
 import { AlertController, NavController } from '@ionic/angular';
-import { RentalService } from '../services/rental.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-rental-details',
@@ -11,17 +11,18 @@ import { RentalService } from '../services/rental.service';
 })
 export class RentalDetailsPage implements OnInit {
 
-  private rentalId: number;
   public nameOfRental: string;
+  public rentalId: number;
+  public userId: number;
   public currentRental: Rental;
-
-  public rentals: Array<Rental> = [];
+  public dateFrom: Date;
+  public dateTo: Date;
   
   constructor(
     private activatedRoute: ActivatedRoute,
     private alertController: AlertController,
     private navCtrl: NavController,
-    private rentalService: RentalService
+    private httpClient: HttpClient
   ) {
     
    }
@@ -33,24 +34,45 @@ export class RentalDetailsPage implements OnInit {
     
     let arrow = async (data: any) => {
       this.nameOfRental = data.params.rentalName;
-      this.rentalId = data.params.rentalId;
+      const id = data.params.rentalId;
+      this.rentalId = id;
+      this.userId = localStorage.user_id;
 
-      this.currentRental = 
-        this.rentalService.findRentalById(this.rentalId);
+      this.httpClient
+        .get("http://localhost:3000/properties/" + id)
+        .subscribe(
+          async (response: any) => {
+            console.log(response[0]);
+            this.currentRental = response[0];  
+            console.log(this.currentRental);
 
+            if (!this.currentRental) {
+              const alert = await this.alertController.create({
+                header: 'Alert',
+                subHeader: 'Warning',
+                message: 'This page does not exist',
+                buttons: ['OK']
+              });
+          
+              await alert.present();
+      
+              this.navigateBack();
+            }
+          }
+        )
 
-      if (!this.currentRental) {
-        const alert = await this.alertController.create({
-          header: 'Alert',
-          subHeader: 'Warning',
-          message: 'This page does not exist',
-          buttons: ['OK']
-        });
+      // if (!this.currentRental) {
+      //   const alert = await this.alertController.create({
+      //     header: 'Alert',
+      //     subHeader: 'Warning',
+      //     message: 'This page does not exist',
+      //     buttons: ['OK']
+      //   });
     
-        await alert.present();
+      //   await alert.present();
 
-        this.navigateBack();
-      }
+      //   this.navigateBack();
+      // }
     }
     
     this.activatedRoute.queryParamMap.subscribe(
@@ -59,8 +81,36 @@ export class RentalDetailsPage implements OnInit {
     );
   }
 
-  navigateBack () {
+  navigateBack() {
     this.navCtrl.navigateForward('tabs');
+  }
+
+  sendBooking() {
+    var property = {
+      dateFrom: this.dateFrom,
+      dateTo: this.dateTo,
+      userId: this.userId,
+      status: "NEW"
+    };
+    
+    this.httpClient
+      .post("http://localhost:3000/properties/" + this.rentalId + "/bookings", property)
+      .subscribe(
+        async (response) => {
+          console.log(response);
+          const alert = await this.alertController.create({
+              header: 'Success',
+              subHeader: 'Congratulations',
+              message: 'Your booking has been recorded',
+              buttons: ['OK']
+            });
+        
+          await alert.present();
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
   }
 
 }

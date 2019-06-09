@@ -9,13 +9,26 @@
 
 <ion-content>
   <h1 style="text-align: center"><b>This house is very nice</b></h1>
-  <img src="{{currentRental.image}}" class="image">
+  <img src="{{currentRental.imageUrl}}" class="image">
   <ion-card>
     <ion-item>Name: {{currentRental.name}}</ion-item>
-    <ion-item>Address: {{currentRental.house_address}}</ion-item>
+    <ion-item>Address: {{currentRental.location}}</ion-item>
     <ion-item>Price: {{currentRental.price}}</ion-item>
-    <ion-item>Owner: {{currentRental.owner}}</ion-item>
   </ion-card>
+
+  <h2 style="text-align: center">Book this house now</h2>
+  <ion-list>
+    <ion-card>
+      <ion-card-subtitle style="text-align: center; margin: 15px" >Select the start date for your booking (MM/DD/YYYY)</ion-card-subtitle>
+        <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select Date From" [(ngModel)]="dateFrom"></ion-datetime> 
+    </ion-card>
+    <ion-card>
+    <ion-card-subtitle style="text-align: center; margin: 15px">Select the end date for your booking (MM/DD/YYYY)</ion-card-subtitle>
+      <ion-datetime displayFormat = "MM/DD/YYYY" placeholder="Select Date To" [(ngModel)]="dateTo"></ion-datetime>
+    </ion-card>
+  </ion-list>
+  
+  <ion-button color="danger" expand="full" style="margin: 15px" (click)="sendBooking()">Book now</ion-button>
 
 
 </ion-content>

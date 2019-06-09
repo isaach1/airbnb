@@ -35,15 +35,17 @@ export class RegisterPage implements OnInit {
     this.httpClient
       .post("http://localhost:3000/users", user)
       .subscribe(
-        (response) => {
+        (response: any) => {
           console.log(response);
-          this.navCtrl.navigateForward('');
+          const userId = response.id;
+          localStorage.setItem("user_id", userId);
+          this.navCtrl.navigateForward('tabs/tab1');
         },
         async (err) => {
           console.log(err);
           const alert = await this.alertCtrl.create({
             header: 'Alert',
-            subHeader: 'Invalid user',
+            subHeader: 'This email has already been used',
             message: err.message,
             buttons: ['OK']
           });
@@ -51,6 +53,10 @@ export class RegisterPage implements OnInit {
           await alert.present();
         }
       );
+  }
+
+  goToLogin() {
+    this.navCtrl.navigateForward('');
   }
 
 }

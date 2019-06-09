@@ -16,8 +16,6 @@ export class Tab3Page {
     private navCtrl: NavController,
     private rentalService: RentalService
     ) {
-    this.rentalService.getAllRentals();
-    this.rentals = this.rentalService.rentals;
     
     }
 

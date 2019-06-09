@@ -1,5 +1,7 @@
 export class User {
-    public name: string;
+    public id: number;
+    public firstname: string;
+    public lastname: string;
     public image: string;
     public join_date: number;
     public location: string;
@@ -9,7 +11,9 @@ export class User {
     public reviews: number;
 
     constructor () {
-        this.name = "";
+        this.id = 0;
+        this.firstname = "";
+        this.lastname = "";
         this.image = "";
         this.join_date = 0;
         this.location = "";

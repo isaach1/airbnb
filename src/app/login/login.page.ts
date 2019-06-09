@@ -30,8 +30,11 @@ export class LoginPage implements OnInit {
     this.httpClient
       .post("http://localhost:3000/users/authentication", user)
       .subscribe(
-        (response) => {
-          console.log(response);
+        (response: any) => { 
+          const userId = response.id;
+
+          localStorage.setItem("user_id", userId);
+          console.log(response.id);
           this.navCtrl.navigateForward('tabs');
         },
         async (err) => {
